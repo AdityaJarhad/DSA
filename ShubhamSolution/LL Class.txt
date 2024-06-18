@@ -1,0 +1,94 @@
+
+public class LinkedList1<T> {
+
+    Node<T> head;
+    Node<T> last;     // to get refrence of last Node<T> in linked list
+    int count=0;
+    LinkedList1() {
+        head = null;
+    }
+
+    public boolean insert(T data) {
+        Node<T> newnode = new Node(data);
+
+        if (head == null) {
+            head = newnode;
+            last=newnode;
+            count++;
+            return true;
+        }
+        if (head != null) {
+    
+            
+            last.setNext(newnode);
+            last = newnode;
+            count++;
+            return true;
+        }
+        return false;
+    }
+    public int size(){
+        return count;
+    }
+    public void display() {
+        Node<T> temp = head;
+        while (temp != null) {
+            System.out.print(temp.getData()+" ");
+            temp = temp.getNext();
+        }
+        System.out.println();
+    }
+    public boolean insert(int data,int position){
+        // if(head==null && position==1 ){
+        //     insert(data);
+        // }
+        Node<T> newnode = new Node(data);
+        if(position==1){
+            newnode.setNext(head);
+            head=newnode;
+            last = newnode;
+            return true;
+        }
+        Node<T> prev = head;     // prev node
+        for(int i=1;i<position-1;i++){
+            prev = prev.getNext();
+            if(prev==null){
+
+                return false;
+            }
+        }
+        newnode.setNext(prev.getNext());
+        prev.setNext(newnode);
+        last = newnode;
+        return true;
+    }
+    public boolean remove(int position){
+        Node<T> prev = head;
+        Node<T> curr = head;
+        for(int i=1;i<position-1;i++){
+            prev = prev.getNext();
+            if(prev==null){
+                return false;
+            }
+
+        }
+        for(int i=1;i<position;i++){
+            curr = curr.getNext();
+            if(curr==null){
+                return false;
+            }
+
+        }
+        prev.setNext(curr.getNext());
+        curr.setNext(null);
+        return false;
+        
+    }
+    public Node getHead(){
+        return head;
+    }
+
+
+   
+
+}

@@ -1,0 +1,42 @@
+public class Main2 {
+    public static int midSize(int pos){
+        int mid;
+        if(pos%2==0){
+            mid = (pos/2);    // 1 2 3 4 5 6
+            return mid;
+        }   
+        else{
+            mid=(pos/2)+1;   // 1 2 3 4 5 6 7
+            return mid;
+        }
+    }
+    public static void main(String[] args) {
+        LinkedList1<Integer> l1 = new LinkedList1<>();
+        l1.insert(10);
+        l1.insert(20);
+        l1.insert(30);
+        l1.insert(40);
+        l1.insert(50);
+        l1.display();
+
+        // LinkedList1<Integer> l2 = new LinkedList1<>();
+        // l2.insert(11);
+        // l2.insert(21);
+        // l2.insert(31);
+        // l2.insert(41);
+        // l2.display();
+        int size1=  l1.size();
+        
+        System.out.println(size1);
+
+
+        int midPos = midSize(size1);
+        
+        Node head = l1.getHead();
+        for(int i=1;i<midPos;i++){
+            head=head.getNext();
+        }
+        System.out.println("Middle elem in L1 - "+head.getData());
+
+    }
+}
